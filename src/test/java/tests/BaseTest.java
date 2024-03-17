@@ -12,18 +12,21 @@ public class BaseTest extends BaseClass {
     LoginPage loginPage;
     String phoneNumber = Utilities.getData(1, 0, "Sheet1");
     String OTP = Utilities.getData(1, 1, "Sheet1");
+    String deviceName;
 
 
     @BeforeMethod
     public void setUp() throws IOException {
         initiateProperties();
         initiateDriver(properties);
+        deviceName = System.getProperty("deviceName");
         loginPage = new LoginPage(driver);
 
     }
 
     @AfterMethod
-    public void tearDown() {
-        driver.quit();
+    public void tearDown() throws IOException {
+        //driver.quit();
+        file.close();
     }
 }

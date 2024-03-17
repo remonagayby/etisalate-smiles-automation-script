@@ -9,12 +9,25 @@ public class HomePage extends BasePage{
         super(driver);
     }
 
-    private final By exploreAllButton = By.id("ae.etisalat.smiles:id/navigation_bar_item_icon_view");
+    private final By cancelLocationDetection = By.id("ae.etisalat.smiles:id/category/9");
+    private final By exploreAllButton = By.xpath("//android.widget.FrameLayout[@content-desc='Explore all']");
 
+    public HomePage clickCancelLocationDetection() {
+        try {
+            shortWait(driver).until(ExpectedConditions.visibilityOfElementLocated(cancelLocationDetection));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        driver.findElement(cancelLocationDetection).click();
+        return this;
+    }
     public ExploreAllPage clickExploreAll() {
-        shortWait(driver).until(ExpectedConditions.visibilityOfElementLocated(exploreAllButton));
+        try {
+            shortWait(driver).until(ExpectedConditions.visibilityOfElementLocated(exploreAllButton));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         driver.findElement(exploreAllButton).click();
-
         return new ExploreAllPage(driver);
     }
 }
